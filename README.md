@@ -1,13 +1,13 @@
 # Mass Search Card
 
-The **Mass Search Card** is an advanced search card for Home Assistant, designed to simplify interaction with Music Assistant. This card allows you to effortlessly search for artists, tracks, albums, playlists, and radio stations and play them on your selected media players.
-Click on the magnifying glass in the input bar to search for your item, after you select a media_player en media type.
+The **Mass Search Card** is a simplified search card for Home Assistant and Music Assistant. It keeps only the search bar, shows grouped search results for artists, tracks, and playlists, and starts playback when you click a result.
 
 ## Features
 
-- Supports searching for artists, tracks, albums, playlists, and radio stations.
-- Dynamic dropdown selection for media players and media types.
-- Popup display for search results with detailed information.
+- Minimal search-only UI.
+- Shows grouped results for artists, tracks, and playlists.
+- Clicking a result plays it immediately.
+- Enables `radio_mode` only for tracks.
 - Multi-language support (English, Dutch, Czech, Swedish, Slovak).
 - Easy integration with Music Assistant.
 
@@ -41,12 +41,19 @@ Click on the magnifying glass in the input bar to search for your item, after yo
 # Usage and configuration
    ````yaml
       type: custom:mass-search-card
+      entity: media_player.ma_living_room_receiver
       language: en
+      limit: 5
+      # Optional if auto-discovery does not find Music Assistant:
+      # config_entry_id: 01K21ASBJDW3W3D0F0B5AFZE9A
    ````
-   **Optional Configuration:**
+   **Configuration:**
    ````yaml
-      language: Set the language of the card. Supported languages: cz, en, nl, sv, sk.
-      Default: en
+      entity: Required. The media player that should receive playback.
+      media_player_entity_id: Alternative to entity.
+      language: Optional. Supported languages: cz, cs, en, nl, sv.
+      limit: Optional. Search result limit. Default: 5.
+      config_entry_id: Optional. Music Assistant config entry id.
    ````
 
 **Feel free to add some languages!**
